@@ -76,7 +76,6 @@
     <Compile Include="GridSample.xaml.cs">
       <DependentUpon>GridSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\DaysOfWeek.cs" />
     <Compile Include="ViewModel\Employee.cs" />
     <Page Include="DataBindingTwoWay.xaml">
       <SubType>Designer</SubType>
