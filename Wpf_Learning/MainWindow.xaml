@@ -18,9 +18,19 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <converter:MultiCheckboxConverter x:Key="MultiCheckboxConverter" />
+        <DataTemplate x:Key="LookupPassEnumTemplate">
+            <StackPanel Orientation="Horizontal">
+                <xctk:CheckComboBox HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    ItemsSource="{Binding Source={StaticResource LookupPassEnum}}"
+                                    Width="Auto" Height="Auto" MinWidth="80" Delimiter="," />
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -32,9 +42,13 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Label Content="SelectedValue : " />
-            <Label Content="{Binding SelectedValue, ElementName=_combo}" Margin="10 0 0 0" />
+            <TextBox Text="{Binding SelectedValue, ElementName=_combo, Mode=TwoWay}" Width="200" Margin="10 0 0 0" />
+            <!--<Label Content="{Binding SelectedValue, ElementName=_combo}" Margin="10 0 0 0" />-->
             <Label Content="Text : " Margin="10 0 0 0" />
-            <Label Content="{Binding Text	, ElementName=_combo}" Margin="10 0 0 0" />
+            <Label Content="{Binding Text, ElementName=_combo}" Margin="10 0 0 0" />
         </StackPanel>
+        <ContentControl Grid.Row="2" ContentTemplate="{StaticResource LookupPassEnumTemplate}" />
+        <ContentControl Grid.Row="3" ContentTemplate="{StaticResource LookupPassEnumTemplate}" />
+        <ContentControl Grid.Row="4" ContentTemplate="{StaticResource LookupPassEnumTemplate}" />
     </Grid>
 </Window>
