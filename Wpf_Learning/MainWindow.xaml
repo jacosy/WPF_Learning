@@ -3,26 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Wpf_Learning"
+        xmlns:viewModel="clr-namespace:Wpf_Learning.ViewModel"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:converter="clr-namespace:Wpf_Learning.Converter"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="LookupPassEnum" MethodName="GetValues"
+                            ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="viewModel:LookupPass" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <converter:MultiCheckboxConverter x:Key="MultiCheckboxConverter" />
+    </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Name="Column1" Width="*"></ColumnDefinition>
-            <ColumnDefinition Name="Column2" Width="2*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Rectangle Fill="Red" Grid.Row="0" Grid.Column="0"></Rectangle>
-        <Rectangle Fill="Yellow" Grid.Row="0" Grid.Column="1"></Rectangle>
-        <Rectangle Fill="Black" Grid.Row="1" Grid.Column="0"></Rectangle>
-        <Rectangle Fill="Firebrick" Grid.Row="1" Grid.Column="1"></Rectangle>
-        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="0"></Rectangle>
-        <Rectangle Fill="DeepSkyBlue" Grid.Row="2" Grid.Column="1"></Rectangle>
-        <Label FontSize="30" Grid.Row="3" Grid.ColumnSpan="2">Rectangels showing column width</Label>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <xctk:CheckComboBox x:Name="_combo" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Width="Auto" Height="Auto" MinWidth="80"
+                                ItemsSource="{Binding Source={StaticResource LookupPassEnum}}"
+                                Delimiter="," />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="SelectedValue : " />
+            <Label Content="{Binding SelectedValue, ElementName=_combo}" Margin="10 0 0 0" />
+            <Label Content="Text : " Margin="10 0 0 0" />
+            <Label Content="{Binding Text	, ElementName=_combo}" Margin="10 0 0 0" />
+        </StackPanel>
     </Grid>
 </Window>
