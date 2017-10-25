@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf_Learning.ViewModel;
 
 namespace Wpf_Learning
 {
@@ -22,7 +23,7 @@ namespace Wpf_Learning
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
     }
 }

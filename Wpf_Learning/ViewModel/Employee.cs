@@ -57,4 +57,13 @@ namespace Wpf_Learning.ViewModel
             }
         }
     }
+
+    public enum LookupPass
+    {
+        FirstDOS,
+        PatientName,
+        InvoiceNumber,
+        PatientAcctNumber,
+        SubmittedAmtTotal
+    }
 }
